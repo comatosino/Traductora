@@ -45,34 +45,35 @@ export type AppApiAuthResponse = {
   profile: UserProfile;
 };
 
+const domain = "https://traductora-servidor.herokuapp.com/";
 export default class API {
   static getUser = async () => {
-    const url = `auth/user`;
+    const url = domain + `auth/user`;
     return axios.get<AppApiGetUserResponse>(url);
   };
 
   static register = async (credentials: Credentials) => {
-    const url = `auth/register`;
+    const url = domain + `auth/register`;
     return axios.post<AppApiAuthResponse>(url, credentials);
   };
 
   static login = async (credentials: Credentials) => {
-    const url = `auth/login`;
+    const url = domain + `auth/login`;
     return axios.post<AppApiAuthResponse>(url, credentials);
   };
 
   static logout = async () => {
-    const url = `auth/logout`;
+    const url = domain + `auth/logout`;
     return axios.delete(url);
   };
 
   static translate = async (payload: TranslationReqPayload) => {
-    const url = `api/translate`;
+    const url = domain + `api/translate`;
     return axios.post<Translation>(url, payload);
   };
 
   static delete = async (id: string): Promise<void> => {
-    const url = `api/translations/${id}`;
+    const url = domain + `api/translations/${id}`;
     return axios.delete(url);
   };
 }
