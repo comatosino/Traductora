@@ -45,7 +45,7 @@ export type AppApiAuthResponse = {
   profile: UserProfile;
 };
 
-const domain = "https://traductora-servidor.herokuapp.com/";
+const domain = "";
 export default class API {
   static getUser = async () => {
     const url = domain + `auth/user`;
