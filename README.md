@@ -12,7 +12,7 @@ Create a user profile to start. Select a source language to speak and a target l
 
 Makes use of a couple custom React hooks to interface with the browser Web Speech API Speech-to-Text (SpeechRecognition) and Text-to-Speech (SpeechSynthesis) interfaces.
 
-![app](/assets/translator.gif)
+[![app](/assets/translator.gif)](https://traductora.herokuapp.com/)
 
 ## Contents
 
@@ -195,13 +195,13 @@ Reference to useReducer dispatch. Unlike useSpeechToText, there is nothing to do
 
 `getVoiceMap() => SpeechSynthesisVoiceMap`
 
-*Available voices vary between browsers*
+_Available voices vary between browsers_
 
 Returns a map of SpeechSynthesisVoice arrays. Each key is a string representing a BCP 47 language tag and each value is an array of available voices for that language and locale. Is always constructed from `getVoiceArray()`.
 
 `getVoiceArray() => SpeechSynthesisVoice[]`
 
-*Available voices vary between browsers*
+_Available voices vary between browsers_
 
 Returns an [array of SpeechSynthesisVoice objects](https://developer.mozilla.org/en-US/docs/Web/API/SpeechSynthesis) representing all the available voices on the current device.
 
