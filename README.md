@@ -15,7 +15,7 @@ Makes use of a couple custom React hooks to interface with the browser Web Speec
 ---
 
 
-<img src="./assets/translator.gif" height="500px"/>
+<a href='https://traductora.herokuapp.com/'><img src="./assets/translator.gif" height="500px"/></a>
 
 ---
 
