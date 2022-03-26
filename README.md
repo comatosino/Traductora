@@ -34,7 +34,7 @@ Makes use of a couple custom React hooks to interface with the browser Web Speec
 
 ## Backend
 
-This repository supports the client-side of the application. The backend is available [here](https://github.com/comatosino/translator) on GitHub.
+This repository supports the client-side of the application. The backend is available [here](https://github.com/comatosino/translator-server) on GitHub.
 
 ---
 
