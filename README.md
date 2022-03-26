@@ -12,7 +12,12 @@ Create a user profile to start. Select a source language to speak and a target l
 
 Makes use of a couple custom React hooks to interface with the browser Web Speech API Speech-to-Text (SpeechRecognition) and Text-to-Speech (SpeechSynthesis) interfaces.
 
-[![app](/assets/translator.gif)](https://traductora.herokuapp.com/)
+---
+
+
+<img src="./assets/translator.gif" height="500px"/>
+
+---
 
 ## Contents
 
