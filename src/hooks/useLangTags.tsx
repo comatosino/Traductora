@@ -9,7 +9,7 @@ const useLangTags = (speaker: Speaker): { langTags: string[] } => {
       return [...new Set(tags)];
     }
     return [];
-  }, []);
+  }, [speaker]);
 
   return { langTags };
 };
