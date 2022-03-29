@@ -6,30 +6,26 @@ import TextToSpeech from "./TextToSpeech";
 
 import { UseTextToSpeechReturn, TextToSpeechOptions, Speaker } from "./types";
 
-const useTextToSpeech = (): UseTextToSpeechReturn => {
+const useTextToSpeech = (init = INITIAL_STATE): UseTextToSpeechReturn => {
   const textToSpeechAvailable = TextToSpeech.isSupported();
-  const [state, dispatch] = useReducer(textToSpeechReducer, INITIAL_STATE);
+  const [state, dispatch] = useReducer(textToSpeechReducer, init);
 
   useEffect(() => {
-    if (state.textToSpeech.voices) {
-      const voices = state.textToSpeech.voices;
-      const localVoice = voices[navigator.language][0];
-      dispatch(setVoices(state.textToSpeech.voices));
-      dispatch(setSelectedVoice(localVoice));
+    if (state.textToSpeech?.voiceArray.length) {
+      const defaultVoice = state.textToSpeech.interface
+        .getVoices()
+        .find((el) => el.default);
+      dispatch(setVoices(state.textToSpeech.voiceMap));
+      dispatch(setSelectedVoice(defaultVoice!));
     }
-  }, [state.textToSpeech.voices]);
+  }, []);
 
   const speaker = useMemo((): Speaker => {
     return {
-      dispatch,
-      language: state.language,
       speaking: state.speaking,
-      getVoiceMap: () => {
-        return state.textToSpeech.getVoiceMap();
-      },
-      getVoiceArray: () => {
-        return state.textToSpeech.getVoiceArray();
-      },
+      language: state.language,
+      voices: state.textToSpeech?.voiceArray!,
+      dispatch,
       speak(script: string) {
         if (state.selectedVoice) {
           const utterance = new SpeechSynthesisUtterance(script);
@@ -38,23 +34,15 @@ const useTextToSpeech = (): UseTextToSpeechReturn => {
           utterance.pitch = state.pitch as number;
           utterance.rate = state.rate as number;
           utterance.volume = state.volume as number;
-
           utterance.onstart = () => dispatch(setSpeaking(true));
           utterance.onend = () => dispatch(setSpeaking(false));
           utterance.onerror = (e) => console.log("ERROR: ", e.error);
-
-          state.textToSpeech.speak(utterance);
+          state.textToSpeech?.speak(utterance);
         }
       },
-      pause() {
-        state.textToSpeech.pause();
-      },
-      resume() {
-        state.textToSpeech.resume();
-      },
-      cancel() {
-        state.textToSpeech.cancel();
-      },
+      pause: state.textToSpeech?.pause,
+      resume: state.textToSpeech?.resume,
+      cancel: state.textToSpeech?.cancel,
     };
   }, [
     state.language,
