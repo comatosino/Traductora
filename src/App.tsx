@@ -1,9 +1,16 @@
-import { useEffect } from "react";
+import React, { useEffect } from "react";
 import { useAppSelector, useAppDispatch } from "./store/hooks";
 import { getUser } from "./store/userSlice/thunks";
 import { setFetching } from "./store/userSlice";
 import { Profile } from "./pages/auth";
-import { Box, CircularProgress, Container, Paper } from "@mui/material";
+import {
+  Box,
+  CircularProgress,
+  Container,
+  Paper,
+  Stack,
+  Typography,
+} from "@mui/material";
 import ThemeProvider from "@mui/system/ThemeProvider";
 import theme from "./themes/theme";
 
@@ -20,21 +27,51 @@ const App: React.FC = (): JSX.Element => {
   return (
     <ThemeProvider theme={theme}>
       <Container id="app" maxWidth="sm">
-        <Paper>
+        <Paper elevation={5}>
           <Box
             sx={{
-              height:'100vh',
+              height: "100vh",
               width: "100%",
               display: "flex",
               alignItems: "center",
               justifyContent: "center",
+              position: "relative",
             }}
           >
-            {fetchingUser ? <CircularProgress /> : <Profile />}
+            {fetchingUser ? <Loading /> : <Profile />}
           </Box>
         </Paper>
       </Container>
     </ThemeProvider>
+  );
+};
+
+const Loading: React.FC = (): JSX.Element => {
+  return (
+    <>
+      <Stack
+        position={"absolute"}
+        left={0}
+        right={0}
+        top={0}
+        bgcolor={theme.palette.secondary.main}
+        height="10vh"
+        alignItems="center"
+        justifyContent={"center"}
+      >
+        <Typography
+          fontSize={24}
+          fontWeight={800}
+          color={"rgba(0, 0, 0, 0.87)"}
+        >
+          <strong>Welcome to Traductora!</strong>
+        </Typography>
+        <Typography color={"rgba(0, 0, 0, 0.87)"}>
+          A speech-to-speech language translation app
+        </Typography>
+      </Stack>
+      <CircularProgress />
+    </>
   );
 };
 
