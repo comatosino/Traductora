@@ -60,7 +60,7 @@ const Record: React.FC = (): JSX.Element => {
             margin={1}
             position={"relative"}
           >
-            <Card elevation={5}>
+            <Card elevation={10}>
               <Box position={"absolute"} top={5} right={5}>
                 <IconButton
                   onClick={() =>
