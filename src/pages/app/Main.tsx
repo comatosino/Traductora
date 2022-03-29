@@ -1,51 +1,36 @@
-import MicNoneIcon from "@mui/icons-material/MicNone";
-import SwapHorizIcon from "@mui/icons-material/SwapHoriz";
-import {
-  FormControl,
-  InputLabel,
-  MenuItem,
-  Select,
-  SelectChangeEvent,
-  IconButton,
-  Stack,
-  Box,
-  FormHelperText,
-  Typography,
-} from "@mui/material";
-
-import { Microphone } from "../../hooks/useSpeechToText/types";
-import { Speaker } from "../../hooks/useTextToSpeech/types";
-
-import languages from "../../utils/maps/languages.json";
-import countries from "../../utils/maps/countries.json";
-
-import { useCallback, useEffect, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
+import { useAppDispatch } from "../../store/hooks";
+import { addTranslation } from "../../store/userSlice";
 import {
   setLanguage,
   setSelectedVoice,
 } from "../../hooks/useTextToSpeech/store/actions";
-import { useAppDispatch } from "../../store/hooks";
-import { addTranslation } from "../../store/userSlice";
 import API, { TranslationReqPayload } from "../../utils/API";
+
+import Box from "@mui/material/Box";
+import MicNoneIcon from "@mui/icons-material/MicNone";
+import ArrowRightIcon from "@mui/icons-material/ArrowRight";
+import { IconButton, Stack, Typography } from "@mui/material";
+
+import { Microphone } from "../../hooks/useSpeechToText/types";
+import { Speaker } from "../../hooks/useTextToSpeech/types";
+import LangDialog from "../../components/LangDialog";
 import { splitLangTag } from "../../utils";
 
 const Main: React.FC<{
   microphone: Microphone;
   speaker: Speaker;
-  langTags: string[];
-}> = ({ microphone, speaker, langTags }): JSX.Element => {
+}> = ({ microphone, speaker }): JSX.Element => {
   const { language: srcLang, listening, transcript } = microphone;
-  const { language: trgLang, speaking } = speaker;
+  const { language: trgLang, speaking, voices } = speaker;
 
   const userDispatch = useAppDispatch();
 
   const [status, setStatus] = useState("Ready!");
-
   const [call, setCall] = useState({
     text: "",
     countryCode: "",
   });
-
   const [response, setResponse] = useState({
     text: "",
     countryCode: "",
@@ -99,34 +84,6 @@ const Main: React.FC<{
     if (transcript) translate(transcript);
   }, [translate, transcript]);
 
-  const setSourceLang = (src: string) => {
-    microphone.setLanguage(src);
-  };
-
-  const handleSetSourceLang = (e: SelectChangeEvent<string>) => {
-    setSourceLang(e.target.value);
-  };
-
-  const setTargetLang = (trg: string) => {
-    const voices = speaker.getVoiceMap();
-    if (voices) {
-      const defaultVoice = voices[trg][0];
-      speaker.dispatch(setLanguage(trg));
-      speaker.dispatch(setSelectedVoice(defaultVoice));
-    }
-  };
-
-  const handleSetTargetLang = (e: SelectChangeEvent<string>) => {
-    setTargetLang(e.target.value);
-  };
-
-  const handleSwapLangs = () => {
-    const srcTemp = srcLang;
-    const trgTemp = trgLang;
-    setSourceLang(trgTemp);
-    setTargetLang(srcTemp);
-  };
-
   const handleListen = () => {
     setStatus("Listening...");
     setCall({
@@ -140,8 +97,34 @@ const Main: React.FC<{
     microphone.listen();
   };
 
-  const [srcLangCode, srcCountryCode] = splitLangTag(srcLang);
-  const [trgLangCode, trgCountryCode] = splitLangTag(trgLang);
+  const [dialogOpen, setDialogOpen] = useState<{ [type: string]: boolean }>({
+    target: false,
+    source: false,
+  });
+  const handleOpen = (type: string) => {
+    setDialogOpen(() => ({ ...dialogOpen, [type]: true }));
+  };
+  const handleClose = (type: string, value: string) => {
+    if (value) {
+      switch (type) {
+        case "source":
+          microphone.setLanguage(value);
+          break;
+        case "target":
+          const [langCode, countryCode] = splitLangTag(value);
+
+          const lang = voices.find((lang) => lang.code === langCode);
+          const country = lang?.countries.find(
+            (ctry) => ctry.code === countryCode
+          );
+          const voice = country?.voices[0];
+          speaker.dispatch(setLanguage(value));
+          speaker.dispatch(setSelectedVoice(voice!));
+          break;
+      }
+    }
+    setDialogOpen(() => ({ ...dialogOpen, [type]: false }));
+  };
 
   return (
     <Stack
@@ -194,6 +177,7 @@ const Main: React.FC<{
         )}
       </Stack>
 
+      {/* /////////////////////////////////////////////////////////////////////////////// */}
       <Box
         display={"flex"}
         flexDirection={"row"}
@@ -201,79 +185,47 @@ const Main: React.FC<{
         justifyContent={"space-evenly"}
         alignItems={"center"}
       >
-        <Box width={150}>
-          <FormControl variant="standard" fullWidth>
-            <InputLabel id="src-lang">
-              {`
-                ${languages[srcLangCode]["endonym"]} •
-                ${languages[srcLangCode]["exonym"]["en"]}
-              `}
-            </InputLabel>
-            <Select
-              label="Source Language"
-              id="src-lang"
-              name="source"
-              value={microphone.language || ""}
-              onChange={handleSetSourceLang}
-            >
-              {langTags.map((tag) => {
-                const [, countryCode] = splitLangTag(tag);
-                return (
-                  <MenuItem key={tag} value={tag}>
-                    <img
-                      loading="lazy"
-                      width="100"
-                      src={`https://flagcdn.com/${countryCode.toLowerCase()}.svg`}
-                      alt={""}
-                    />
-                  </MenuItem>
-                );
-              })}
-            </Select>
-            <FormHelperText sx={{ overflow: "visible" }}>
-              {countries[srcCountryCode]}
-            </FormHelperText>
-          </FormControl>
-        </Box>
+        <IconButton onClick={() => handleOpen("source")} disableRipple>
+          <img
+            loading="lazy"
+            width="100"
+            src={`https://flagcdn.com/${srcLang
+              .substring(3)
+              .toLowerCase()}.svg`}
+            alt={""}
+          />
+        </IconButton>
+        <LangDialog
+          type="source"
+          open={dialogOpen.source}
+          voices={voices}
+          handleClose={handleClose}
+        />
 
-        <IconButton onClick={handleSwapLangs}>
-          <SwapHorizIcon />
+        <IconButton>
+          <ArrowRightIcon />
         </IconButton>
 
-        <Box width={150}>
-          <FormControl fullWidth variant="standard">
-            <InputLabel id="src-lang">
-              {`
-                ${languages[trgLangCode]["endonym"]} •
-                ${languages[trgLangCode]["exonym"]["en"]}
-              `}
-            </InputLabel>
+        <IconButton onClick={() => handleOpen("target")} disableRipple>
+          <img
+            loading="lazy"
+            width="100"
+            src={`https://flagcdn.com/${trgLang
+              .substring(3)
+              .toLowerCase()}.svg`}
+            alt={""}
+          />
+        </IconButton>
+        <LangDialog
+          type="target"
+          open={dialogOpen.target}
+          voices={voices}
+          handleClose={handleClose}
+        />
 
-            <Select
-              label="Target Language"
-              id="trg-lang"
-              name="target"
-              value={speaker.language || ""}
-              onChange={handleSetTargetLang}
-            >
-              {langTags.map((tag) => {
-                const [, country] = splitLangTag(tag);
-                return (
-                  <MenuItem key={tag} value={tag}>
-                    <img
-                      loading="lazy"
-                      width="100"
-                      src={`https://flagcdn.com/${country.toLowerCase()}.svg`}
-                      alt={""}
-                    />
-                  </MenuItem>
-                );
-              })}
-            </Select>
-            <FormHelperText>{countries[trgCountryCode]}</FormHelperText>
-          </FormControl>
-        </Box>
+        {/* /////////////////////////////////////////////////////////////////////////////// */}
       </Box>
+
       <Box
         position={"absolute"}
         bottom={50}
