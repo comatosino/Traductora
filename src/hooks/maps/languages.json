@@ -1,514 +1,511 @@
 {
   "af": {
     "endonym": "Afrikaans",
-    "exonym": { "en": "Afrikaans" }
+    "exonyms": { "en": "Afrikaans" }
   },
   "am": {
     "endonym": "አማርኛ",
-    "exonym": { "en": "Amharic" }
+    "exonyms": { "en": "Amharic" }
   },
   "ar": {
     "endonym": "العربية",
-    "exonym": { "en": "Arabic" }
+    "exonyms": { "en": "Arabic" }
   },
   "as": {
     "endonym": "অসমীয়া",
-    "exonym": { "en": "Assamese" }
+    "exonyms": { "en": "Assamese" }
   },
   "az": {
     "endonym": "Azərbaycan­ılı",
-    "exonym": { "en": "Azeri" }
+    "exonyms": { "en": "Azeri" }
   },
   "ba": {
     "endonym": "Башҡорт",
-    "exonym": { "en": "Bashkir" }
+    "exonyms": { "en": "Bashkir" }
   },
   "be": {
     "endonym": "беларуская",
-    "exonym": { "en": "Belarusian" }
+    "exonyms": { "en": "Belarusian" }
   },
   "bg": {
     "endonym": "български",
-    "exonym": { "en": "Bulgarian" }
+    "exonyms": { "en": "Bulgarian" }
   },
   "bn": {
     "endonym": "বাংলা",
-    "exonym": { "en": "Bengali" }
+    "exonyms": { "en": "Bengali" }
   },
   "bo": {
     "endonym": "བོད་ཡིག",
-    "exonym": { "en": "Tibetan" }
+    "exonyms": { "en": "Tibetan" }
   },
   "br": {
     "endonym": "brezhoneg",
-    "exonym": { "en": "Breton" }
+    "exonyms": { "en": "Breton" }
   },
   "bs": {
     "endonym": "bosanski | босански",
-    "exonym": { "en": "Bosnian" }
+    "exonyms": { "en": "Bosnian" }
   },
   "ca": {
     "endonym": "català",
-    "exonym": { "en": "Catalan" }
+    "exonyms": { "en": "Catalan" }
   },
   "co": {
     "endonym": "Corsu",
-    "exonym": { "en": "Corsican" }
+    "exonyms": { "en": "Corsican" }
   },
   "cs": {
     "endonym": "čeština",
-    "exonym": { "en": "Czech" }
+    "exonyms": { "en": "Czech" }
   },
   "cy": {
     "endonym": "Cymraeg",
-    "exonym": { "en": "Welsh" }
+    "exonyms": { "en": "Welsh" }
   },
   "da": {
     "endonym": "dansk",
-    "exonym": { "en": "Danish" }
+    "exonyms": { "en": "Danish" }
   },
   "de": {
     "endonym": "Deutsch",
-    "exonym": { "en": "German" }
+    "exonyms": { "en": "German" }
   },
   "dv": {
     "endonym": "ދިވެހިބަސް",
-    "exonym": { "en": "Divehi" }
+    "exonyms": { "en": "Divehi" }
   },
   "el": {
     "endonym": "ελληνικά",
-    "exonym": { "en": "Greek" }
+    "exonyms": { "en": "Greek" }
   },
   "en": {
     "endonym": "English",
-    "exonym": {
-      "en": "English",
-      "es": "Inglés"
-    }
+    "exonyms": { "es": "inglés" }
   },
   "es": {
     "endonym": "español",
-    "exonym": { "en": "Spanish" }
+    "exonyms": { "en": "Spanish" }
   },
   "et": {
     "endonym": "eesti",
-    "exonym": { "en": "Estonian" }
+    "exonyms": { "en": "Estonian" }
   },
   "eu": {
     "endonym": "euskara",
-    "exonym": { "en": "Basque" }
+    "exonyms": { "en": "Basque" }
   },
   "fa": {
     "endonym": "فارسى",
-    "exonym": { "en": "Persian" }
+    "exonyms": { "en": "Persian" }
   },
   "fi": {
     "endonym": "suomi",
-    "exonym": { "en": "Finnish" }
+    "exonyms": { "en": "Finnish" }
   },
   "fo": {
     "endonym": "føroyskt",
-    "exonym": { "en": "Faroese" }
+    "exonyms": { "en": "Faroese" }
   },
   "fr": {
     "endonym": "français",
-    "exonym": { "en": "French" }
+    "exonyms": { "en": "French" }
   },
   "fy": {
     "endonym": "Frysk",
-    "exonym": { "en": "Frisian" }
+    "exonyms": { "en": "Frisian" }
   },
   "ga": {
     "endonym": "Gaeilge",
-    "exonym": { "en": "Irish Gaelic" }
+    "exonyms": { "en": "Irish Gaelic" }
   },
   "gd": {
     "endonym": "Gàidhlig",
-    "exonym": { "en": "Scottish Gaelic" }
+    "exonyms": { "en": "Scottish Gaelic" }
   },
   "gl": {
     "endonym": "galego",
-    "exonym": { "en": "Galician" }
+    "exonyms": { "en": "Galician" }
   },
   "gu": {
     "endonym": "ગુજરાતી",
-    "exonym": { "en": "Gujarati" }
+    "exonyms": { "en": "Gujarati" }
   },
   "ha": {
     "endonym": "Hausa",
-    "exonym": { "en": "Hausa" }
+    "exonyms": { "en": "Hausa" }
   },
   "he": {
     "endonym": "עברית",
-    "exonym": { "en": "Hebrew" }
+    "exonyms": { "en": "Hebrew" }
   },
   "hi": {
     "endonym": "हिंदी",
-    "exonym": { "en": "Hindi" }
+    "exonyms": { "en": "Hindi" }
   },
   "hr": {
     "endonym": "hrvatski",
-    "exonym": { "en": "Croatian" }
+    "exonyms": { "en": "Croatian" }
   },
   "hu": {
     "endonym": "magyar",
-    "exonym": { "en": "Hungarian" }
+    "exonyms": { "en": "Hungarian" }
   },
   "hy": {
     "endonym": "Հայերեն",
-    "exonym": { "en": "Armenian" }
+    "exonyms": { "en": "Armenian" }
   },
   "id": {
     "endonym": "Bahasa Indonesia",
-    "exonym": { "en": "Indonesian" }
+    "exonyms": { "en": "Indonesian" }
   },
   "ig": {
     "endonym": "Igbo",
-    "exonym": { "en": "Igbo" }
+    "exonyms": { "en": "Igbo" }
   },
   "ii": {
     "endonym": "ꆈꌠꁱꂷ",
-    "exonym": { "en": "Yi" }
+    "exonyms": { "en": "Yi" }
   },
   "is": {
     "endonym": "íslenska",
-    "exonym": { "en": "Icelandic" }
+    "exonyms": { "en": "Icelandic" }
   },
   "it": {
     "endonym": "italiano",
-    "exonym": { "en": "Italian" }
+    "exonyms": { "en": "Italian" }
   },
   "iu": {
     "endonym": "ᐃᓄᒃᑎᑐᑦ (ᑲᓇᑕ)",
-    "exonym": { "en": "Inuktitut" }
+    "exonyms": { "en": "Inuktitut" }
   },
   "ja": {
     "endonym": "日本語",
-    "exonym": { "en": "Japanese" }
+    "exonyms": { "en": "Japanese" }
   },
   "jv": {
     "endonym": "Basa Jawa | ꦧꦱꦗꦮ",
-    "exonym": { "en": "Javanese" }
+    "exonyms": { "en": "Javanese" }
   },
   "ka": {
     "endonym": "ქართული",
-    "exonym": { "en": "Georgian" }
+    "exonyms": { "en": "Georgian" }
   },
   "kk": {
     "endonym": "Қазащb",
-    "exonym": { "en": "Kazakh" }
+    "exonyms": { "en": "Kazakh" }
   },
   "kl": {
     "endonym": "kalaallisut",
-    "exonym": { "en": "Greenlandic" }
+    "exonyms": { "en": "Greenlandic" }
   },
   "km": {
     "endonym": "ខ្មែរ",
-    "exonym": { "en": "Khmer" }
+    "exonyms": { "en": "Khmer" }
   },
   "kn": {
     "endonym": "ಕನ್ನಡ",
-    "exonym": { "en": "Kannada" }
+    "exonyms": { "en": "Kannada" }
   },
   "ko": {
     "endonym": "한국어",
-    "exonym": { "en": "Korean" }
+    "exonyms": { "en": "Korean" }
   },
   "ky": {
     "endonym": "Кыргыз",
-    "exonym": { "en": "Kyrgyz" }
+    "exonyms": { "en": "Kyrgyz" }
   },
   "lb": {
     "endonym": "Lëtzebuergesch",
-    "exonym": { "en": "Luxembourgish" }
+    "exonyms": { "en": "Luxembourgish" }
   },
   "lo": {
     "endonym": "ລາວ",
-    "exonym": { "en": "Lao" }
+    "exonyms": { "en": "Lao" }
   },
   "lt": {
     "endonym": "lietuvių",
-    "exonym": { "en": "Lithuanian" }
+    "exonyms": { "en": "Lithuanian" }
   },
   "lv": {
     "endonym": "latviešu",
-    "exonym": { "en": "Latvian" }
+    "exonyms": { "en": "Latvian" }
   },
   "mi": {
     "endonym": "Reo Māori",
-    "exonym": { "en": "Maori" }
+    "exonyms": { "en": "Maori" }
   },
   "mk": {
     "endonym": "македонски јазик",
-    "exonym": { "en": "Macedonian" }
+    "exonyms": { "en": "Macedonian" }
   },
   "ml": {
     "endonym": "മലയാളം",
-    "exonym": { "en": "Malayalam" }
+    "exonyms": { "en": "Malayalam" }
   },
   "mn": {
     "endonym": "Монгол хэл | ᠮᠤᠨᠭᠭᠤᠯ ᠬᠡᠯᠡ",
-    "exonym": { "en": "Mongolian" }
+    "exonyms": { "en": "Mongolian" }
   },
   "mr": {
     "endonym": "मराठी",
-    "exonym": { "en": "Marathi" }
+    "exonyms": { "en": "Marathi" }
   },
   "ms": {
     "endonym": "Bahasa Malaysia",
-    "exonym": { "en": "Malay" }
+    "exonyms": { "en": "Malay" }
   },
   "mt": {
     "endonym": "Malti",
-    "exonym": { "en": "Maltese" }
+    "exonyms": { "en": "Maltese" }
   },
   "my": {
     "endonym": "မြန်မာဘာသာ",
-    "exonym": { "en": "Burmese" }
+    "exonyms": { "en": "Burmese" }
   },
   "nb": {
     "endonym": "norsk (bokmål)",
-    "exonym": { "en": "Norwegian (Bokmål)" }
+    "exonyms": { "en": "Norwegian (Bokmål)" }
   },
   "ne": {
     "endonym": "नेपाली (नेपाल)",
-    "exonym": { "en": "Nepali" }
+    "exonyms": { "en": "Nepali" }
   },
   "nl": {
     "endonym": "Nederlands",
-    "exonym": { "en": "Dutch" }
+    "exonyms": { "en": "Dutch" }
   },
   "nn": {
     "endonym": "norsk (nynorsk)",
-    "exonym": { "en": "Norwegian (Nynorsk)" }
+    "exonyms": { "en": "Norwegian (Nynorsk)" }
   },
   "no": {
     "endonym": "norsk",
-    "exonym": { "en": "Norwegian" }
+    "exonyms": { "en": "Norwegian" }
   },
   "oc": {
     "endonym": "Occitan",
-    "exonym": { "en": "Occitan" }
+    "exonyms": { "en": "Occitan" }
   },
   "or": {
     "endonym": "ଓଡ଼ିଆ",
-    "exonym": { "en": "Oriya" }
+    "exonyms": { "en": "Oriya" }
   },
   "pa": {
     "endonym": "ਪੰਜਾਬੀ",
-    "exonym": { "en": "Punjabi" }
+    "exonyms": { "en": "Punjabi" }
   },
   "pl": {
     "endonym": "polski",
-    "exonym": { "en": "Polish" }
+    "exonyms": { "en": "Polish" }
   },
   "ps": {
     "endonym": "پښتو",
-    "exonym": { "en": "Pashto" }
+    "exonyms": { "en": "Pashto" }
   },
   "pt": {
     "endonym": "Português",
-    "exonym": { "en": "Portuguese" }
+    "exonyms": { "en": "Portuguese" }
   },
   "rm": {
     "endonym": "Rumantsch",
-    "exonym": { "en": "Romansh" }
+    "exonyms": { "en": "Romansh" }
   },
   "ro": {
     "endonym": "română",
-    "exonym": { "en": "Romanian" }
+    "exonyms": { "en": "Romanian" }
   },
   "ru": {
     "endonym": "русский",
-    "exonym": { "en": "Russian" }
+    "exonyms": { "en": "Russian" }
   },
   "rw": {
     "endonym": "Kinyarwanda",
-    "exonym": { "en": "Kinyarwanda" }
+    "exonyms": { "en": "Kinyarwanda" }
   },
   "sa": {
     "endonym": "संस्कृत",
-    "exonym": { "en": "Sanskrit" }
+    "exonyms": { "en": "Sanskrit" }
   },
   "se": {
     "endonym": "davvisámegiella",
-    "exonym": { "en": "Sami (Northern)" }
+    "exonyms": { "en": "Sami (Northern)" }
   },
   "si": {
     "endonym": "සිංහ",
-    "exonym": { "en": "Sinhala" }
+    "exonyms": { "en": "Sinhala" }
   },
   "sk": {
     "endonym": "slovenčina",
-    "exonym": { "en": "Slovak" }
+    "exonyms": { "en": "Slovak" }
   },
   "sl": {
     "endonym": "slovenski",
-    "exonym": { "en": "Slovenian" }
+    "exonyms": { "en": "Slovenian" }
   },
   "so": {
     "endonym": "صومالي | 𐒖𐒍 𐒈𐒝𐒑𐒛𐒐𐒘",
-    "exonym": { "en": "Somali" }
+    "exonyms": { "en": "Somali" }
   },
   "sq": {
     "endonym": "shqipe",
-    "exonym": { "en": "Albanian" }
+    "exonyms": { "en": "Albanian" }
   },
   "sr": {
     "endonym": "srpski | српски",
-    "exonym": { "en": "Serbian" }
+    "exonyms": { "en": "Serbian" }
   },
   "sv": {
     "endonym": "svenska",
-    "exonym": { "en": "Swedish" }
+    "exonyms": { "en": "Swedish" }
   },
   "su": {
     "endonym": "Basa Sunda",
-    "exonym": { "en": "Sundanese" }
+    "exonyms": { "en": "Sundanese" }
   },
   "sw": {
     "endonym": "Kiswahili",
-    "exonym": { "en": "Swahili" }
+    "exonyms": { "en": "Swahili" }
   },
   "ta": {
     "endonym": "தமிழ்",
-    "exonym": { "en": "Tamil" }
+    "exonyms": { "en": "Tamil" }
   },
   "te": {
     "endonym": "తెలుగు",
-    "exonym": { "en": "Telugu" }
+    "exonyms": { "en": "Telugu" }
   },
   "tg": {
     "endonym": "Тоҷикӣ",
-    "exonym": { "en": "Tajik" }
+    "exonyms": { "en": "Tajik" }
   },
   "th": {
     "endonym": "ไทย",
-    "exonym": { "en": "Thai" }
+    "exonyms": { "en": "Thai" }
   },
   "tk": {
     "endonym": "türkmençe",
-    "exonym": { "en": "Turkmen" }
+    "exonyms": { "en": "Turkmen" }
   },
   "tn": {
     "endonym": "Setswana",
-    "exonym": { "en": "Setswana" }
+    "exonyms": { "en": "Setswana" }
   },
   "tr": {
     "endonym": "Türkçe",
-    "exonym": { "en": "Turkish" }
+    "exonyms": { "en": "Turkish" }
   },
   "tt": {
     "endonym": "Татар",
-    "exonym": { "en": "Tatar" }
+    "exonyms": { "en": "Tatar" }
   },
   "ug": {
     "endonym": "ئۇيغۇرچە",
-    "exonym": { "en": "Uyghur" }
+    "exonyms": { "en": "Uyghur" }
   },
   "uk": {
     "endonym": "українська",
-    "exonym": { "en": "Ukrainian" }
+    "exonyms": { "en": "Ukrainian" }
   },
   "ur": {
     "endonym": "اُردو",
-    "exonym": { "en": "Urdu" }
+    "exonyms": { "en": "Urdu" }
   },
   "uz": {
     "endonym": "U'zbek | Ўзбек",
-    "exonym": { "en": "Uzbek" }
+    "exonyms": { "en": "Uzbek" }
   },
   "vi": {
     "endonym": "Tiếng Việt",
-    "exonym": { "en": "Vietnamese" }
+    "exonyms": { "en": "Vietnamese" }
   },
   "wo": {
     "endonym": "Wolof",
-    "exonym": { "en": "Wolof" }
+    "exonyms": { "en": "Wolof" }
   },
   "xh": {
     "endonym": "isiXhosa",
-    "exonym": { "en": "isiXhosa" }
+    "exonyms": { "en": "isiXhosa" }
   },
   "yo": {
     "endonym": "Yoruba",
-    "exonym": { "en": "Yoruba" }
+    "exonyms": { "en": "Yoruba" }
   },
   "zh": {
     "endonym": "中文",
-    "exonym": { "en": "Chinese" }
+    "exonyms": { "en": "Chinese" }
   },
   "zu": {
     "endonym": "isiZulu",
-    "exonym": { "en": "isiZulu" }
+    "exonyms": { "en": "isiZulu" }
   },
 
   "dsb": {
     "endonym": "dolnoserbšćina",
-    "exonym": { "en": "Lower Sorbian" }
+    "exonyms": { "en": "Lower Sorbian" }
   },
   "fil": {
     "endonym": "Filipino",
-    "exonym": { "en": "Filipino" }
+    "exonyms": { "en": "Filipino" }
   },
   "gsw": {
     "endonym": "Elsässisch",
-    "exonym": { "en": "Alsatian" }
+    "exonyms": { "en": "Alsatian" }
   },
   "hsb": {
     "endonym": "hornjoserbšćina",
-    "exonym": { "en": "Upper Sorbian" }
+    "exonyms": { "en": "Upper Sorbian" }
   },
   "kok": {
     "endonym": "कोंकणी",
-    "exonym": { "en": "Konkani" }
+    "exonyms": { "en": "Konkani" }
   },
   "moh": {
     "endonym": "Kanien'kéha",
-    "exonym": { "en": "Mohawk" }
+    "exonyms": { "en": "Mohawk" }
   },
   "nso": {
     "endonym": "Sesotho sa Leboa",
-    "exonym": { "en": "Sesotho" }
+    "exonyms": { "en": "Sesotho" }
   },
   "prs": {
     "endonym": "درى",
-    "exonym": { "en": "Dari" }
+    "exonyms": { "en": "Dari" }
   },
   "qut": {
     "endonym": "K'iche",
-    "exonym": { "en": "K'iche" }
+    "exonyms": { "en": "K'iche" }
   },
   "quz": {
     "endonym": "runasimi",
-    "exonym": { "en": "Quechua" }
+    "exonyms": { "en": "Quechua" }
   },
   "sah": {
     "endonym": "саха",
-    "exonym": { "en": "Yakut" }
+    "exonyms": { "en": "Yakut" }
   },
   "sma": {
     "endonym": "åarjelsaemiengiele",
-    "exonym": { "en": "Sami (Southern)" }
+    "exonyms": { "en": "Sami (Southern)" }
   },
   "smj": {
     "endonym": "julevusámegiella",
-    "exonym": { "en": "Sami (Lule)" }
+    "exonyms": { "en": "Sami (Lule)" }
   },
   "smn": {
     "endonym": "sämikielâ",
-    "exonym": { "en": "Sami (Inari)" }
+    "exonyms": { "en": "Sami (Inari)" }
   },
   "sms": {
     "endonym": "sääm´ǩiõll",
-    "exonym": { "en": "Sami (Skolt)" }
+    "exonyms": { "en": "Sami (Skolt)" }
   },
   "syr": {
     "endonym": "ܣܘܪܝܝܐ",
-    "exonym": { "en": "Syriac" }
+    "exonyms": { "en": "Syriac" }
   },
   "tzm": {
     "endonym": "Tamazight",
-    "exonym": { "en": "Tamazight" }
+    "exonyms": { "en": "Tamazight" }
   }
 }
