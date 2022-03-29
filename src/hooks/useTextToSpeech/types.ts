@@ -1,11 +1,11 @@
 import TextToSpeech from "./TextToSpeech";
 
 export type TextToSpeechState = {
-  textToSpeech: TextToSpeech;
+  textToSpeech: TextToSpeech | null;
   speaking: boolean;
   language: string;
   selectedVoice: SpeechSynthesisVoice | null;
-  voices: SpeechSynthesisVoiceMap | null;
+  voices: SpeechSynthesisVoiceMap;
   volume: number | number[];
   rate: number | number[];
   pitch: number | number[];
@@ -14,13 +14,12 @@ export type TextToSpeechState = {
 export type Speaker = {
   speaking: boolean;
   language: string;
+  voices: TextToSpeechVoiceArray;
   dispatch: React.Dispatch<TextToSpeechReducerAction>;
-  getVoiceMap: () => SpeechSynthesisVoiceMap | undefined;
-  getVoiceArray: () => SpeechSynthesisVoice[];
   speak: (script: string) => void;
-  pause: () => void;
-  resume: () => void;
-  cancel: () => void;
+  pause: (() => void) | undefined;
+  resume: (() => void) | undefined;
+  cancel: (() => void) | undefined;
 };
 
 export type TextToSpeechOptions = {
@@ -33,8 +32,28 @@ export type TextToSpeechOptions = {
 };
 
 export type SpeechSynthesisVoiceMap = {
-  [langCode: string]: SpeechSynthesisVoice[];
+  [langCode: string]: {
+    code: string;
+    endonym: string;
+    exonyms: { [langCode: string]: string };
+    countries: {
+      code: string;
+      name_en: string;
+      voices: SpeechSynthesisVoice[];
+    }[];
+  };
 };
+
+export type TextToSpeechVoiceArray = {
+  code: string;
+  endonym: string;
+  exonyms: { [langCode: string]: string };
+  countries: {
+    code: string;
+    name_en: string;
+    voices: SpeechSynthesisVoice[];
+  }[];
+}[];
 
 export type UseTextToSpeechReturn = {
   textToSpeechAvailable: boolean;
