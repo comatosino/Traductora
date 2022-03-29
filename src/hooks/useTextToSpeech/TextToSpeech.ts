@@ -1,24 +1,51 @@
-import { SpeechSynthesisVoiceMap } from "./types";
+import { SpeechSynthesisVoiceMap, TextToSpeechVoiceArray } from "./types";
+
+import countries from "../maps/countries.json";
+import languages from "../maps/languages.json";
 
 export default class TextToSpeech {
   private static _instance: TextToSpeech;
   public interface: SpeechSynthesis;
-  public voices: SpeechSynthesisVoiceMap | null = null;
+  public voiceMap: SpeechSynthesisVoiceMap = {};
+  public voiceArray: TextToSpeechVoiceArray = [];
   public speaking: boolean = false;
 
   private constructor() {
     this.interface = window.speechSynthesis;
     this.interface.onvoiceschanged = () => {
-      const voicesArr = this.interface.getVoices();
-      this.voices = voicesArr.reduce(
-        (voiceMap: SpeechSynthesisVoiceMap, voice: SpeechSynthesisVoice) => {
-          voiceMap[voice.lang]
-            ? voiceMap[voice.lang].push(voice)
-            : (voiceMap[voice.lang] = [voice]);
-          return voiceMap;
-        },
-        {}
-      );
+      this.voiceMap = this.interface
+        .getVoices()
+        .reduce<SpeechSynthesisVoiceMap>((map, voice) => {
+          const [langCode, countryCode] = voice.lang.split("-");
+
+          if (map[langCode]) {
+            const country = map[langCode].countries.find(
+              (country) => country.code === countryCode
+            );
+            country
+              ? country.voices.push(voice)
+              : map[langCode].countries.push({
+                  code: countryCode,
+                  name_en: countries[countryCode],
+                  voices: [voice],
+                });
+          } else {
+            map[langCode] = {
+              code: langCode,
+              endonym: languages[langCode].endonym,
+              exonyms: languages[langCode].exonyms,
+              countries: [
+                {
+                  code: countryCode,
+                  name_en: countries[countryCode],
+                  voices: [voice],
+                },
+              ],
+            };
+          }
+          return map;
+        }, {});
+      this.voiceArray = Object.values(this.voiceMap);
     };
   }
 
@@ -32,19 +59,8 @@ export default class TextToSpeech {
     return this._instance;
   }
 
-  getVoiceArray(): SpeechSynthesisVoice[] {
-    return this.interface.getVoices();
-  }
-
-  getVoiceMap(): SpeechSynthesisVoiceMap | undefined {
-    if (!this.voices) return;
-    return this.voices;
-  }
-
   speak(utterance: SpeechSynthesisUtterance): void {
-    if (utterance) {
-      this.interface.speak(utterance);
-    }
+    if (utterance) this.interface.speak(utterance);
   }
 
   pause(): void {
