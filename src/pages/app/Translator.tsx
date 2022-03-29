@@ -9,10 +9,10 @@ import { logout } from "../../store/userSlice/thunks";
 
 import useSpeechToText from "../../hooks/useSpeechToText";
 import useTextToSpeech from "../../hooks/useTextToSpeech";
-import useLangTags from "../../hooks/useLangTags";
 
 import Header from "../../components/Header";
 import Footer from "../../components/Footer";
+import React from "react";
 
 export enum Page {
   HISTORY,
@@ -36,8 +36,6 @@ const Translator: React.FC<{ user: UserProfile }> = (): JSX.Element => {
     options: speakOptions,
   } = useTextToSpeech();
 
-  const { langTags } = useLangTags(speaker);
-
   const handleLogout = () => {
     userDispatch(logout());
   };
@@ -59,7 +57,7 @@ const Translator: React.FC<{ user: UserProfile }> = (): JSX.Element => {
     <Box width={"100%"} height={"100%"}>
       <Header handleLogout={handleLogout} setPage={setPage} />
       {page === Page.MAIN && (
-        <Main speaker={speaker} microphone={microphone} langTags={langTags} />
+        <Main speaker={speaker} microphone={microphone} />
       )}
       {page === Page.OPTIONS && (
         <Options
