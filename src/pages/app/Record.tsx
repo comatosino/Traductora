@@ -1,4 +1,7 @@
-import "./Record.css";
+import React from "react";
+
+import "./scrollbar.css";
+
 import DeleteForeverIcon from "@mui/icons-material/DeleteForever";
 import {
   Box,
@@ -10,8 +13,8 @@ import {
   IconButton,
 } from "@mui/material";
 
-import languages from "../../utils/maps/languages.json";
-import countries from "../../utils/maps/countries.json";
+import languages from "../../hooks/maps/languages.json";
+import countries from "../../hooks/maps/countries.json";
 
 import { useAppDispatch, useAppSelector } from "../../store/hooks";
 import { deleteTranslation } from "../../store/userSlice/thunks";
@@ -70,7 +73,7 @@ const Record: React.FC = (): JSX.Element => {
               </Box>
               <CardContent>
                 <Stack spacing={1} paddingBottom={1}>
-                  <Typography>{languages[srcLangCode]["endonym"]}</Typography>
+                  <Typography>{languages[srcLangCode].endonym}</Typography>
 
                   <Stack direction={"row"}>
                     <img
@@ -83,7 +86,7 @@ const Record: React.FC = (): JSX.Element => {
 
                   <Typography>
                     {`
-                      ${languages[srcLangCode]["exonym"]["en"]} •
+                      ${languages[srcLangCode].exonyms.en || "English"} •
                       ${countries[srcCountryCode]}
                     `}
                   </Typography>
@@ -91,7 +94,7 @@ const Record: React.FC = (): JSX.Element => {
                 </Stack>
                 <Divider variant="middle" />
                 <Stack spacing={1} alignItems={"flex-end"} paddingTop={1}>
-                  <Typography>{languages[trgLangCode]["endonym"]}</Typography>
+                  <Typography>{languages[trgLangCode].endonym}</Typography>
                   <img
                     loading="lazy"
                     width="50"
@@ -100,7 +103,7 @@ const Record: React.FC = (): JSX.Element => {
                   />
                   <Typography>
                     {`
-                      ${languages[trgLangCode]["exonym"]["en"]} •
+                      ${languages[trgLangCode].exonyms.en || "English"} •
                       ${countries[trgCountryCode]}
                     `}
                   </Typography>
