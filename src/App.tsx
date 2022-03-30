@@ -4,19 +4,23 @@ import { getUser } from "./store/userSlice/thunks";
 import { setFetching } from "./store/userSlice";
 import { Profile } from "./pages/auth";
 import { Box, CircularProgress, Container, Paper, Stack } from "@mui/material";
+
 import ThemeProvider from "@mui/system/ThemeProvider";
 import theme from "./themes/theme";
 
-import { BrowserView, MobileView } from "react-device-detect";
+import { isMobile } from "react-device-detect";
+import MobileFallback from "./pages/MobileFallback";
 
 const App: React.FC = (): JSX.Element => {
   const userDispatch = useAppDispatch();
   const fetchingUser = useAppSelector((state) => state.user.fetching);
 
   useEffect(() => {
-    const token = localStorage.getItem("translator-token");
-    if (token) userDispatch(getUser());
-    else userDispatch(setFetching(false));
+    if (!isMobile) {
+      const token = localStorage.getItem("translator-token");
+      if (token) userDispatch(getUser());
+      else userDispatch(setFetching(false));
+    }
   }, [userDispatch]);
 
   return (
@@ -33,7 +37,13 @@ const App: React.FC = (): JSX.Element => {
               position: "relative",
             }}
           >
-            {fetchingUser ? <Loading /> : <Profile />}
+            {isMobile ? (
+              <MobileFallback />
+            ) : fetchingUser ? (
+              <Loading />
+            ) : (
+              <Profile />
+            )}
           </Box>
         </Paper>
       </Container>
