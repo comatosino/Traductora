@@ -1,5 +1,5 @@
 import React from "react";
-import { Divider, Slider, Stack, Typography } from "@mui/material";
+import { Divider, Paper, Slider, Stack, Typography } from "@mui/material";
 import {
   TextToSpeechOptions,
   TextToSpeechActions,
@@ -10,24 +10,22 @@ import {
   setRate,
   setVolume,
 } from "../../hooks/useTextToSpeech/store/actions";
-import { splitLangTag } from "../../utils";
 
 const Options: React.FC<{
   micOptions: SpeechToTextOptions;
   speakOptions: TextToSpeechOptions;
-}> = ({ micOptions, speakOptions }): JSX.Element => {
-  const [trgLangCode, trgCountryCode] = splitLangTag(speakOptions.language);
-
+}> = ({ speakOptions }): JSX.Element => {
   return (
     <Stack
       id={"options"}
-      spacing={3}
+      spacing={5}
       padding={3}
+      overflow={"auto"}
       maxHeight={0.8}
       minHeight={0.8}
       boxSizing={"border-box"}
     >
-      <Typography component="h2">
+      <Typography component="h2" fontSize={24}>
         <Divider>Voice Options</Divider>
       </Typography>
 
