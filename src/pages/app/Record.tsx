@@ -45,11 +45,14 @@ const Record: React.FC = (): JSX.Element => {
     <Stack
       id={"history"}
       overflow={"auto"}
+      padding={3}
       maxHeight={0.8}
       minHeight={0.8}
-      padding={1}
       boxSizing={"border-box"}
     >
+      <Typography component="h2" fontSize={24}>
+        <Divider>History</Divider>
+      </Typography>
       {translations.map((translation: Translation) => {
         const [srcLangCode, srcCountryCode] = splitLangTag(translation.source);
         const [trgLangCode, trgCountryCode] = splitLangTag(translation.target);
