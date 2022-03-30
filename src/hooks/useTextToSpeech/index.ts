@@ -18,7 +18,7 @@ const useTextToSpeech = (init = INITIAL_STATE): UseTextToSpeechReturn => {
       dispatch(setVoices(state.textToSpeech.voiceMap));
       dispatch(setSelectedVoice(defaultVoice!));
     }
-  });
+  }, []);
 
   const speaker = useMemo((): Speaker => {
     return {
