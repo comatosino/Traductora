@@ -3,14 +3,7 @@ import { useAppSelector, useAppDispatch } from "./store/hooks";
 import { getUser } from "./store/userSlice/thunks";
 import { setFetching } from "./store/userSlice";
 import { Profile } from "./pages/auth";
-import {
-  Box,
-  CircularProgress,
-  Container,
-  Paper,
-  Stack,
-  Typography,
-} from "@mui/material";
+import { Box, CircularProgress, Container, Paper, Stack } from "@mui/material";
 import ThemeProvider from "@mui/system/ThemeProvider";
 import theme from "./themes/theme";
 
@@ -60,18 +53,7 @@ const Loading: React.FC = (): JSX.Element => {
         height="10vh"
         alignItems="center"
         justifyContent={"center"}
-      >
-        <Typography
-          fontSize={24}
-          fontWeight={800}
-          color={"rgba(0, 0, 0, 0.87)"}
-        >
-          <strong>Welcome to Traductora!</strong>
-        </Typography>
-        <Typography color={"rgba(0, 0, 0, 0.87)"}>
-          A speech-to-speech language translation app
-        </Typography>
-      </Stack>
+      ></Stack>
       <CircularProgress />
     </>
   );

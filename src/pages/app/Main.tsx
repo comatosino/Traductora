@@ -9,13 +9,17 @@ import API, { TranslationReqPayload } from "../../utils/API";
 
 import Box from "@mui/material/Box";
 import MicNoneIcon from "@mui/icons-material/MicNone";
-import ArrowRightIcon from "@mui/icons-material/ArrowRight";
+import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
+import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import { IconButton, Stack, Typography } from "@mui/material";
 
 import { Microphone } from "../../hooks/useSpeechToText/types";
 import { Speaker } from "../../hooks/useTextToSpeech/types";
 import LangDialog from "../../components/LangDialog";
 import { splitLangTag } from "../../utils";
+
+import languages from "../../hooks/maps/languages.json";
+import countries from "../../hooks/maps/countries.json";
 
 const Main: React.FC<{
   microphone: Microphone;
@@ -25,8 +29,14 @@ const Main: React.FC<{
   const { language: trgLang, speaking, voices } = speaker;
 
   const userDispatch = useAppDispatch();
-
   const [status, setStatus] = useState("Ready!");
+  const [srcLeft, setSrcLeft] = useState(true);
+  const [selectLeft, setSelectLeft] = useState(srcLang);
+  const [selectRight, setSelectRight] = useState(trgLang);
+  const [dialogOpen, setDialogOpen] = useState<{ [type: string]: boolean }>({
+    left: false,
+    right: false,
+  });
   const [call, setCall] = useState({
     text: "",
     countryCode: "",
@@ -97,22 +107,28 @@ const Main: React.FC<{
     microphone.listen();
   };
 
-  const [dialogOpen, setDialogOpen] = useState<{ [type: string]: boolean }>({
-    target: false,
-    source: false,
-  });
-  const handleOpen = (type: string) => {
+  const handleOpenDialog = (type: string) => {
     setDialogOpen(() => ({ ...dialogOpen, [type]: true }));
   };
-  const handleClose = (type: string, value: string) => {
+
+  const handleCloseDialog = (name: string, type: string, value: string) => {
+    setDialogOpen(() => ({ ...dialogOpen, [name]: false }));
     if (value) {
+      switch (name) {
+        case "left":
+          setSelectLeft(() => value);
+          break;
+        case "right":
+          setSelectRight(() => value);
+          break;
+      }
+
       switch (type) {
         case "source":
           microphone.setLanguage(value);
           break;
         case "target":
           const [langCode, countryCode] = splitLangTag(value);
-
           const lang = voices.find((lang) => lang.code === langCode);
           const country = lang?.countries.find(
             (ctry) => ctry.code === countryCode
@@ -123,7 +139,21 @@ const Main: React.FC<{
           break;
       }
     }
-    setDialogOpen(() => ({ ...dialogOpen, [type]: false }));
+  };
+
+  const handleSwapLangs = () => {
+    const [srcLangCode, srcCountryCode] = splitLangTag(trgLang);
+
+    const lang = speaker.voices.find((lang) => lang.code === srcLangCode);
+    const ctry = lang?.countries.find(
+      (country) => country.code === srcCountryCode
+    );
+    const [voice] = ctry?.voices!;
+
+    setSrcLeft(() => !srcLeft);
+    microphone.setLanguage(trgLang);
+    speaker.dispatch(setLanguage(srcLang));
+    speaker.dispatch(setSelectedVoice(voice));
   };
 
   return (
@@ -177,7 +207,6 @@ const Main: React.FC<{
         )}
       </Stack>
 
-      {/* /////////////////////////////////////////////////////////////////////////////// */}
       <Box
         display={"flex"}
         flexDirection={"row"}
@@ -185,45 +214,78 @@ const Main: React.FC<{
         justifyContent={"space-evenly"}
         alignItems={"center"}
       >
-        <IconButton onClick={() => handleOpen("source")} disableRipple>
-          <img
-            loading="lazy"
-            width="100"
-            src={`https://flagcdn.com/${srcLang
-              .substring(3)
-              .toLowerCase()}.svg`}
-            alt={""}
-          />
-        </IconButton>
+        <Stack alignItems={"center"}>
+          <Typography fontSize={12}>
+            {`
+              ${languages[selectLeft.substring(0, 2)].endonym} •
+              ${
+                languages[selectLeft.substring(0, 2)].exonyms.en ||
+                languages[selectLeft.substring(0, 2)].endonym
+              }
+            `}
+          </Typography>
+          <IconButton onClick={() => handleOpenDialog("left")} disableRipple>
+            <img
+              loading="lazy"
+              width="100"
+              src={`https://flagcdn.com/${selectLeft
+                .substring(3)
+                .toLowerCase()}.svg`}
+              alt={""}
+            />
+          </IconButton>
+          <Typography fontSize={12}>
+            {countries[selectLeft.substring(3)]}
+          </Typography>
+        </Stack>
         <LangDialog
-          type="source"
-          open={dialogOpen.source}
+          name={"left"}
+          type={srcLeft ? "source" : "target"}
+          open={dialogOpen.left}
           voices={voices}
-          handleClose={handleClose}
+          handleClose={handleCloseDialog}
         />
 
-        <IconButton>
-          <ArrowRightIcon />
+        <IconButton onClick={handleSwapLangs}>
+          {srcLeft ? (
+            <ArrowForwardIcon sx={{ fontSize: "2em" }} />
+          ) : (
+            <ArrowBackIcon sx={{ fontSize: "2em" }} />
+          )}
         </IconButton>
 
-        <IconButton onClick={() => handleOpen("target")} disableRipple>
-          <img
-            loading="lazy"
-            width="100"
-            src={`https://flagcdn.com/${trgLang
-              .substring(3)
-              .toLowerCase()}.svg`}
-            alt={""}
-          />
-        </IconButton>
+        <Stack alignItems={"center"}>
+          <Typography fontSize={12}>
+            {`
+              ${languages[selectRight.substring(0, 2)].endonym} •
+              ${
+                languages[selectRight.substring(0, 2)].exonyms.en ||
+                languages[selectRight.substring(0, 2)].endonym
+              }
+            `}
+          </Typography>
+          <IconButton onClick={() => handleOpenDialog("right")} disableRipple>
+            <img
+              loading="lazy"
+              width="100"
+              src={`https://flagcdn.com/${selectRight
+                .substring(3)
+                .toLowerCase()}.svg`}
+              alt={""}
+            />
+          </IconButton>
+          <Typography fontSize={12}>
+            {countries[selectRight.substring(3)]}
+          </Typography>
+        </Stack>
+
         <LangDialog
-          type="target"
-          open={dialogOpen.target}
+          name="right"
+          type={srcLeft ? "target" : "source"}
+          open={dialogOpen.right}
           voices={voices}
-          handleClose={handleClose}
+          handleClose={handleCloseDialog}
         />
-
-        {/* /////////////////////////////////////////////////////////////////////////////// */}
       </Box>
 
       <Box

@@ -12,17 +12,22 @@ import {
 import { TextToSpeechVoiceArray } from "../hooks/useTextToSpeech/types";
 
 interface LangDialogProps {
+  name: string;
   type: string;
   open: boolean;
   voices: TextToSpeechVoiceArray;
-  handleClose: (type: string, value: string) => void;
+  handleClose: (name: string, type: string, value: string) => void;
 }
 
 const LangDialog: React.FC<LangDialogProps> = (props): JSX.Element => {
-  const { type, open, voices, handleClose } = props;
+  const { name, type, open, voices, handleClose } = props;
 
   return (
-    <Dialog scroll="paper" open={open} onClose={() => handleClose(type, "")}>
+    <Dialog
+      scroll="paper"
+      open={open}
+      onClose={() => handleClose(name, type, "")}
+    >
       <DialogTitle>{`Select a ${type} language`}</DialogTitle>
       <DialogContent className="hide-scrollbar">
         <List sx={{ pt: 0 }} subheader={<li />}>
@@ -44,7 +49,7 @@ const LangDialog: React.FC<LangDialogProps> = (props): JSX.Element => {
                     <ListItemButton
                       key={country.code}
                       onClick={() =>
-                        handleClose(type, `${lang.code}-${country.code}`)
+                        handleClose(name, type, `${lang.code}-${country.code}`)
                       }
                     >
                       <ListItemIcon>
