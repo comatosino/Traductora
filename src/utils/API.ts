@@ -46,8 +46,7 @@ export type AppApiAuthResponse = {
 };
 
 // falls back to proxy defined in package.json in development
-const domain =
-  (process.env.NODE_ENV === "production" && process.env.SERVER_URL) ?? "";
+const domain = process.env.REACT_APP_SERVER_URL || "";
 
 export default class API {
   static getUser = async () => {
