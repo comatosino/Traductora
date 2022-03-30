@@ -11,8 +11,8 @@ type FooterProps = {
 
 const Footer: React.FC<FooterProps> = ({ page, setPage }): JSX.Element => {
   return (
-    <Box sx={{ bgcolor: theme.palette.secondary.main }}>
-      <footer >
+    <Box sx={{ bgcolor: theme.palette.secondary.main, borderRadius: 1 }}>
+      <footer>
         <nav
           style={{
             height: "10vh",

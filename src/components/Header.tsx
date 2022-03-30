@@ -6,6 +6,7 @@ import MicNoneIcon from "@mui/icons-material/MicNone";
 import { Box, SpeedDial, SpeedDialAction } from "@mui/material";
 import { Page } from "../pages/app/Translator";
 import theme from "../themes/theme";
+import React from "react";
 
 type HeaderProps = {
   handleLogout: () => void;
@@ -15,7 +16,7 @@ type HeaderProps = {
 const Header: React.FC<HeaderProps> = (props): JSX.Element => {
   const { setPage, handleLogout } = props;
   return (
-    <Box sx={{ bgcolor: theme.palette.secondary.main }}>
+    <Box sx={{ bgcolor: theme.palette.secondary.main, borderRadius: 1 }}>
       <header>
         <nav
           style={{
