@@ -1,5 +1,5 @@
 import React from "react";
-import { Divider, Paper, Slider, Stack, Typography } from "@mui/material";
+import { Divider, Slider, Stack, Typography } from "@mui/material";
 import {
   TextToSpeechOptions,
   TextToSpeechActions,
