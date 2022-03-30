@@ -44,7 +44,7 @@
     "exonyms": { "en": "Breton" }
   },
   "bs": {
-    "endonym": "bosanski | босански",
+    "endonym": "bosanski • босански",
     "exonyms": { "en": "Bosnian" }
   },
   "ca": {
@@ -184,7 +184,7 @@
     "exonyms": { "en": "Japanese" }
   },
   "jv": {
-    "endonym": "Basa Jawa | ꦧꦱꦗꦮ",
+    "endonym": "Basa Jawa • ꦧꦱꦗꦮ",
     "exonyms": { "en": "Javanese" }
   },
   "ka": {
@@ -244,7 +244,7 @@
     "exonyms": { "en": "Malayalam" }
   },
   "mn": {
-    "endonym": "Монгол хэл | ᠮᠤᠨᠭᠭᠤᠯ ᠬᠡᠯᠡ",
+    "endonym": "Монгол хэл • ᠮᠤᠨᠭᠭᠤᠯ ᠬᠡᠯᠡ",
     "exonyms": { "en": "Mongolian" }
   },
   "mr": {
@@ -344,7 +344,7 @@
     "exonyms": { "en": "Slovenian" }
   },
   "so": {
-    "endonym": "صومالي | 𐒖𐒍 𐒈𐒝𐒑𐒛𐒐𐒘",
+    "endonym": "صومالي • 𐒖𐒍 𐒈𐒝𐒑𐒛𐒐𐒘",
     "exonyms": { "en": "Somali" }
   },
   "sq": {
@@ -352,7 +352,7 @@
     "exonyms": { "en": "Albanian" }
   },
   "sr": {
-    "endonym": "srpski | српски",
+    "endonym": "srpski • српски",
     "exonyms": { "en": "Serbian" }
   },
   "sv": {
@@ -412,7 +412,7 @@
     "exonyms": { "en": "Urdu" }
   },
   "uz": {
-    "endonym": "U'zbek | Ўзбек",
+    "endonym": "U'zbek • Ўзбек",
     "exonyms": { "en": "Uzbek" }
   },
   "vi": {
