@@ -14,6 +14,8 @@ import {
 import ThemeProvider from "@mui/system/ThemeProvider";
 import theme from "./themes/theme";
 
+import { BrowserView, MobileView } from "react-device-detect";
+
 const App: React.FC = (): JSX.Element => {
   const userDispatch = useAppDispatch();
   const fetchingUser = useAppSelector((state) => state.user.fetching);
