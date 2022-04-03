@@ -46,10 +46,10 @@ export type AppApiAuthResponse = {
 };
 
 // falls back to proxy defined in package.json in development
-const domain =
-  process.env.NODE_ENV === "production"
-    ? "https://traductora-servidor.herokuapp.com/"
-    : "";
+let domain = "";
+if (process.env.NODE_ENV === "production") {
+  domain = "https://traductora-servidor.herokuapp.com/";
+}
 
 export default class API {
   static getUser = async () => {
