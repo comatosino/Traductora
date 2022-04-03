@@ -142,18 +142,21 @@ const Main: React.FC<{
   };
 
   const handleSwapLangs = () => {
-    const [srcLangCode, srcCountryCode] = splitLangTag(trgLang);
+    const newSource = trgLang;
+    const newTarget = srcLang;
 
-    const lang = speaker.voices.find((lang) => lang.code === srcLangCode);
+    const [trgLangCode, trgCountryCode] = splitLangTag(newTarget);
+
+    const lang = speaker.voices.find((lang) => lang.code === trgLangCode);
     const ctry = lang?.countries.find(
-      (country) => country.code === srcCountryCode
+      (country) => country.code === trgCountryCode
     );
-    const [voice] = ctry?.voices!;
+    const [newVoice] = ctry?.voices!;
 
     setSrcLeft(() => !srcLeft);
-    microphone.setLanguage(trgLang);
-    speaker.dispatch(setLanguage(srcLang));
-    speaker.dispatch(setSelectedVoice(voice));
+    microphone.setLanguage(newSource);
+    speaker.dispatch(setLanguage(newTarget));
+    speaker.dispatch(setSelectedVoice(newVoice));
   };
 
   return (
