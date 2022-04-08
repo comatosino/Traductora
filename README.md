@@ -269,7 +269,7 @@ dispatch(setVolume(2)) // updates volume property in state
 
 Currently, only desktop browsers can fully support this application.
 
-Though [MDN docs](https://developer.mozilla.org/en-US/docs/Web/API/Web_Speech_API) state support accross several mobile browsers, implementations differ and there has been initial difficulty in interfacing with mobile OS speech engines.
+Though [MDN docs](https://developer.mozilla.org/en-US/docs/Web/API/Web_Speech_API) state support accross several mobile browsers, implementations of the Web Speech API differ and there has been initial difficulty in interfacing with mobile OS speech engines.
 
 Will need to check navigator for mobile browsers and render fallback content for now.
 
