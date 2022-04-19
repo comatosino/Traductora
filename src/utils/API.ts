@@ -1,54 +1,30 @@
-import axios, { AxiosRequestHeaders } from "axios";
-import { UserProfile } from "../store/userSlice";
+import axios, { AxiosRequestHeaders } from 'axios';
+import {
+  AppApiAuthResponse,
+  AppApiGetUserResponse,
+  Credentials,
+  Translation,
+  TranslationReqPayload,
+} from '../types/API';
 
 axios.interceptors.request.use(
   (config) => {
-    const token = localStorage.getItem("translator-token");
+    const token = localStorage.getItem('translator-token');
     if (token) {
       const headers: AxiosRequestHeaders = {
         authorization: `Bearer ${token}`,
       };
-      config["headers"] = headers;
+      config['headers'] = headers;
     }
     return config;
   },
   (error) => console.error(error)
 );
 
-export type Credentials = {
-  username: string;
-  password: string;
-};
-
-export type TranslationReqPayload = {
-  srcLang: string;
-  trgLang: string;
-  text: string;
-};
-
-export type Translation = {
-  _id: string;
-  source: string;
-  sourceText: string;
-  target: string;
-  targetText: string;
-  createdAt?: Date;
-  updatedAt?: Date;
-};
-
-export type AppApiGetUserResponse = {
-  profile: UserProfile;
-};
-
-export type AppApiAuthResponse = {
-  token: "string";
-  profile: UserProfile;
-};
-
 // falls back to proxy defined in package.json in development
-let domain = "";
-if (process.env.NODE_ENV === "production") {
-  domain = "https://traductora-servidor.herokuapp.com/";
+let domain = 'https://traductora-servidor.herokuapp.com/';
+if (process.env.NODE_ENV === 'production') {
+  domain = 'https://traductora-servidor.herokuapp.com/';
 }
 
 export default class API {
