@@ -1,4 +1,4 @@
-import React from "react";
+import React from 'react';
 import {
   Dialog,
   DialogTitle,
@@ -8,28 +8,20 @@ import {
   ListItemButton,
   ListItemIcon,
   ListItemText,
-} from "@mui/material";
-import { TextToSpeechVoiceArray } from "../hooks/useTextToSpeech/types";
-
-interface LangDialogProps {
-  name: string;
-  type: string;
-  open: boolean;
-  voices: TextToSpeechVoiceArray;
-  handleClose: (name: string, type: string, value: string) => void;
-}
+} from '@mui/material';
+import { LangDialogProps } from '../types/props';
 
 const LangDialog: React.FC<LangDialogProps> = (props): JSX.Element => {
   const { name, type, open, voices, handleClose } = props;
 
   return (
     <Dialog
-      scroll="paper"
+      scroll='paper'
       open={open}
-      onClose={() => handleClose(name, type, "")}
+      onClose={() => handleClose(name, type, '')}
     >
       <DialogTitle>{`Select a ${type} language`}</DialogTitle>
-      <DialogContent className="hide-scrollbar">
+      <DialogContent className='hide-scrollbar'>
         <List sx={{ pt: 0 }} subheader={<li />}>
           {voices.map((lang: any) => (
             <li key={lang.code}>
@@ -37,7 +29,7 @@ const LangDialog: React.FC<LangDialogProps> = (props): JSX.Element => {
                 <ListSubheader sx={{ borderRadius: 1 }}>
                   {`
                       ${lang.endonym} •
-                      ${lang.exonyms?.en || "English"}
+                      ${lang.exonyms?.en || 'English'}
                   `}
                 </ListSubheader>
                 {lang.countries.map(
@@ -55,7 +47,7 @@ const LangDialog: React.FC<LangDialogProps> = (props): JSX.Element => {
                       <ListItemIcon>
                         <img
                           src={`https://flagcdn.com/${country.code.toLowerCase()}.svg`}
-                          width="30"
+                          width='30'
                           alt={`${country.name_en}`}
                         />
                       </ListItemIcon>
