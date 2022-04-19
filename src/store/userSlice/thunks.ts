@@ -1,6 +1,7 @@
-import { setFetching, setUser, clearUser, delTranslation } from ".";
-import { AppThunk } from "..";
-import API, { Credentials } from "../../utils/API";
+import { setFetching, setUser, clearUser, delTranslation } from '.';
+import { AppThunk } from '..';
+import { Credentials } from '../../types/API';
+import API from '../../utils/API';
 
 export const getUser = (): AppThunk => async (dispatch) => {
   try {
@@ -10,7 +11,7 @@ export const getUser = (): AppThunk => async (dispatch) => {
     dispatch(setUser(profile));
   } catch (error) {
     console.error(error);
-    localStorage.removeItem("translator-token");
+    localStorage.removeItem('translator-token');
   } finally {
     dispatch(setFetching(false));
   }
@@ -23,11 +24,11 @@ export const register =
       dispatch(setFetching(true));
       const response = await API.register(credentials);
       const { profile, token } = response.data;
-      localStorage.setItem("translator-token", token);
+      localStorage.setItem('translator-token', token);
       dispatch(setUser(profile));
     } catch (error) {
       console.error(error);
-      localStorage.removeItem("translator-token");
+      localStorage.removeItem('translator-token');
       dispatch(clearUser());
     } finally {
       dispatch(setFetching(false));
@@ -41,11 +42,11 @@ export const login =
       dispatch(setFetching(true));
       const response = await API.login(credentials);
       const { profile, token } = response.data;
-      localStorage.setItem("translator-token", token);
+      localStorage.setItem('translator-token', token);
       dispatch(setUser(profile));
     } catch (error) {
       console.error(error);
-      localStorage.removeItem("translator-token");
+      localStorage.removeItem('translator-token');
       dispatch(clearUser());
     } finally {
       dispatch(setFetching(false));
@@ -59,7 +60,7 @@ export const logout = (): AppThunk => async (dispatch) => {
   } catch (error) {
     console.error(error);
   } finally {
-    localStorage.removeItem("translator-token");
+    localStorage.removeItem('translator-token');
     dispatch(clearUser());
     dispatch(setFetching(false));
   }
