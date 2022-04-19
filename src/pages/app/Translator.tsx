@@ -1,24 +1,18 @@
-import { Typography, Box } from "@mui/material";
-import { Main, Options, Record } from ".";
+import { Typography, Box } from '@mui/material';
+import { Main, Options, Record } from '.';
 
-import { useState } from "react";
+import { useState } from 'react';
 
-import { useAppDispatch } from "../../store/hooks";
-import { UserProfile } from "../../store/userSlice";
-import { logout } from "../../store/userSlice/thunks";
+import { useAppDispatch } from '../../store/hooks';
+import { logout } from '../../store/userSlice/thunks';
 
-import useSpeechToText from "../../hooks/useSpeechToText";
-import useTextToSpeech from "../../hooks/useTextToSpeech";
+import useSpeechToText from '../../hooks/useSpeechToText';
+import useTextToSpeech from '../../hooks/useTextToSpeech';
 
-import Header from "../../components/Header";
-import Footer from "../../components/Footer";
-import React from "react";
-
-export enum Page {
-  HISTORY,
-  MAIN,
-  OPTIONS,
-}
+import Header from '../../components/Header';
+import Footer from '../../components/Footer';
+import React from 'react';
+import { Page, UserProfile } from '../../types/app';
 
 const Translator: React.FC<{ user: UserProfile }> = (): JSX.Element => {
   const userDispatch = useAppDispatch();
@@ -54,11 +48,9 @@ const Translator: React.FC<{ user: UserProfile }> = (): JSX.Element => {
   }
 
   return (
-    <Box width={"100%"} height={"100%"}>
+    <Box width={'100%'} height={'100%'}>
       <Header handleLogout={handleLogout} setPage={setPage} />
-      {page === Page.MAIN && (
-        <Main speaker={speaker} microphone={microphone} />
-      )}
+      {page === Page.MAIN && <Main speaker={speaker} microphone={microphone} />}
       {page === Page.OPTIONS && (
         <Options
           micOptions={micOptions}
