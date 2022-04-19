@@ -1,25 +1,15 @@
-import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { Translation } from "../../utils/API";
-
-export interface UserProfile {
-  username?: string;
-  translations?: Translation[];
-}
-
-export interface UserState {
-  profile: UserProfile;
-  error: string;
-  fetching: boolean;
-}
+import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+import { UserProfile, UserState } from '../../types/app';
+import { Translation } from '../../types/API';
 
 export const initialState: UserState = {
-  profile: { username: "", translations: [] },
-  error: "",
+  profile: { username: '', translations: [] },
+  error: '',
   fetching: true,
 };
 
 export const userSlice = createSlice({
-  name: "user",
+  name: 'user',
   initialState,
   reducers: {
     setUser: (state, action: PayloadAction<UserProfile>) => {
