@@ -1,8 +1,8 @@
-import React from "react";
+import React from 'react';
 
-import "./scrollbar.css";
+import './scrollbar.css';
 
-import DeleteForeverIcon from "@mui/icons-material/DeleteForever";
+import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
 import {
   Box,
   Card,
@@ -11,15 +11,15 @@ import {
   Typography,
   Divider,
   IconButton,
-} from "@mui/material";
+} from '@mui/material';
 
-import languages from "../../hooks/maps/languages.json";
-import countries from "../../hooks/maps/countries.json";
+import languages from '../../utils/maps/languages.json';
+import countries from '../../utils/maps/countries.json';
 
-import { useAppDispatch, useAppSelector } from "../../store/hooks";
-import { deleteTranslation } from "../../store/userSlice/thunks";
-import { splitLangTag } from "../../utils";
-import { Translation } from "../../utils/API";
+import { useAppDispatch, useAppSelector } from '../../store/hooks';
+import { deleteTranslation } from '../../store/userSlice/thunks';
+import { splitLangTag } from '../../utils';
+import { Translation } from '../../types/API';
 
 const Record: React.FC = (): JSX.Element => {
   const userDispatch = useAppDispatch();
@@ -33,24 +33,24 @@ const Record: React.FC = (): JSX.Element => {
         maxHeight={0.8}
         minHeight={0.8}
         padding={1}
-        boxSizing={"border-box"}
-        justifyContent={"center"}
+        boxSizing={'border-box'}
+        justifyContent={'center'}
       >
-        <Typography textAlign={"center"}>No history to display!</Typography>
+        <Typography textAlign={'center'}>No history to display!</Typography>
       </Stack>
     );
   }
 
   return (
     <Stack
-      id={"history"}
-      overflow={"auto"}
+      id={'history'}
+      overflow={'auto'}
       padding={3}
       maxHeight={0.8}
       minHeight={0.8}
-      boxSizing={"border-box"}
+      boxSizing={'border-box'}
     >
-      <Typography component="h2" fontSize={24}>
+      <Typography component='h2' fontSize={24}>
         <Divider>History</Divider>
       </Typography>
       {translations.map((translation: Translation) => {
@@ -61,15 +61,15 @@ const Record: React.FC = (): JSX.Element => {
             key={translation._id}
             height={1}
             margin={1}
-            position={"relative"}
+            position={'relative'}
           >
             <Card elevation={10}>
-              <Box position={"absolute"} top={5} right={5}>
+              <Box position={'absolute'} top={5} right={5}>
                 <IconButton
                   onClick={() =>
                     userDispatch(deleteTranslation(translation._id))
                   }
-                  aria-label="delete"
+                  aria-label='delete'
                 >
                   <DeleteForeverIcon />
                 </IconButton>
@@ -78,35 +78,35 @@ const Record: React.FC = (): JSX.Element => {
                 <Stack spacing={1} paddingBottom={1}>
                   <Typography>{languages[srcLangCode].endonym}</Typography>
 
-                  <Stack direction={"row"}>
+                  <Stack direction={'row'}>
                     <img
-                      loading="lazy"
-                      width="50"
+                      loading='lazy'
+                      width='50'
                       src={`https://flagcdn.com/${srcCountryCode.toLowerCase()}.svg`}
-                      alt={""}
+                      alt={''}
                     />
                   </Stack>
 
                   <Typography>
                     {`
-                      ${languages[srcLangCode].exonyms.en || "English"} •
+                      ${languages[srcLangCode].exonyms.en || 'English'} •
                       ${countries[srcCountryCode]}
                     `}
                   </Typography>
                   <Typography>{translation.sourceText}</Typography>
                 </Stack>
-                <Divider variant="middle" />
-                <Stack spacing={1} alignItems={"flex-end"} paddingTop={1}>
+                <Divider variant='middle' />
+                <Stack spacing={1} alignItems={'flex-end'} paddingTop={1}>
                   <Typography>{languages[trgLangCode].endonym}</Typography>
                   <img
-                    loading="lazy"
-                    width="50"
+                    loading='lazy'
+                    width='50'
                     src={`https://flagcdn.com/${trgCountryCode.toLowerCase()}.svg`}
-                    alt={""}
+                    alt={''}
                   />
                   <Typography>
                     {`
-                      ${languages[trgLangCode].exonyms.en || "English"} •
+                      ${languages[trgLangCode].exonyms.en || 'English'} •
                       ${countries[trgCountryCode]}
                     `}
                   </Typography>

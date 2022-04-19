@@ -1,25 +1,25 @@
-import React, { useCallback, useEffect, useState } from "react";
-import { useAppDispatch } from "../../store/hooks";
-import { addTranslation } from "../../store/userSlice";
+import React, { useCallback, useEffect, useState } from 'react';
+import { useAppDispatch } from '../../store/hooks';
+import { addTranslation } from '../../store/userSlice';
 import {
   setLanguage,
   setSelectedVoice,
-} from "../../hooks/useTextToSpeech/store/actions";
-import API, { TranslationReqPayload } from "../../utils/API";
+} from '../../hooks/useTextToSpeech/store/actions';
 
-import Box from "@mui/material/Box";
-import MicNoneIcon from "@mui/icons-material/MicNone";
-import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
-import ArrowBackIcon from "@mui/icons-material/ArrowBack";
-import { IconButton, Stack, Typography } from "@mui/material";
+import Box from '@mui/material/Box';
+import MicNoneIcon from '@mui/icons-material/MicNone';
+import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
+import ArrowBackIcon from '@mui/icons-material/ArrowBack';
+import { IconButton, Stack, Typography } from '@mui/material';
 
-import { Microphone } from "../../hooks/useSpeechToText/types";
-import { Speaker } from "../../hooks/useTextToSpeech/types";
-import LangDialog from "../../components/LangDialog";
-import { splitLangTag } from "../../utils";
+import { Microphone } from '../../hooks/useSpeechToText/types';
+import { Speaker } from '../../hooks/useTextToSpeech/types';
+import LangDialog from '../../components/LangDialog';
+import { API, splitLangTag } from '../../utils';
 
-import languages from "../../hooks/maps/languages.json";
-import countries from "../../hooks/maps/countries.json";
+import languages from '../../utils/maps/languages.json';
+import countries from '../../utils/maps/countries.json';
+import { TranslationReqPayload } from '../../types/API';
 
 const Main: React.FC<{
   microphone: Microphone;
@@ -29,7 +29,7 @@ const Main: React.FC<{
   const { language: trgLang, speaking, voices } = speaker;
 
   const userDispatch = useAppDispatch();
-  const [status, setStatus] = useState("Ready!");
+  const [status, setStatus] = useState('Ready!');
   const [srcLeft, setSrcLeft] = useState(true);
   const [selectLeft, setSelectLeft] = useState(srcLang);
   const [selectRight, setSelectRight] = useState(trgLang);
@@ -38,26 +38,26 @@ const Main: React.FC<{
     right: false,
   });
   const [call, setCall] = useState({
-    text: "",
-    countryCode: "",
+    text: '',
+    countryCode: '',
   });
   const [response, setResponse] = useState({
-    text: "",
-    countryCode: "",
+    text: '',
+    countryCode: '',
   });
 
   useEffect(() => {
-    if (speaking) setStatus("Speaking...");
-    else if (!speaking && status === "Speaking...") setStatus("Ready!");
-  }, [speaking]);
+    if (speaking) setStatus('Speaking...');
+    else if (!speaking && status === 'Speaking...') setStatus('Ready!');
+  }, [speaking]); // eslint-disable-line react-hooks/exhaustive-deps
 
   useEffect(() => {
-    if (!listening && status === "Listening...") setStatus("Ready!");
-  }, [listening]);
+    if (!listening && status === 'Listening...') setStatus('Ready!');
+  }, [listening]); // eslint-disable-line react-hooks/exhaustive-deps
 
   const translate = useCallback(
     async (transcript: string) => {
-      setStatus("Translating...");
+      setStatus('Translating...');
       setCall({
         text: transcript,
         countryCode: srcLang.substring(3),
@@ -95,14 +95,14 @@ const Main: React.FC<{
   }, [translate, transcript]);
 
   const handleListen = () => {
-    setStatus("Listening...");
+    setStatus('Listening...');
     setCall({
-      text: "",
-      countryCode: "",
+      text: '',
+      countryCode: '',
     });
     setResponse({
-      text: "",
-      countryCode: "",
+      text: '',
+      countryCode: '',
     });
     microphone.listen();
   };
@@ -115,19 +115,19 @@ const Main: React.FC<{
     setDialogOpen(() => ({ ...dialogOpen, [name]: false }));
     if (value) {
       switch (name) {
-        case "left":
+        case 'left':
           setSelectLeft(() => value);
           break;
-        case "right":
+        case 'right':
           setSelectRight(() => value);
           break;
       }
 
       switch (type) {
-        case "source":
+        case 'source':
           microphone.setLanguage(value);
           break;
-        case "target":
+        case 'target':
           const [langCode, countryCode] = splitLangTag(value);
           const lang = voices.find((lang) => lang.code === langCode);
           const country = lang?.countries.find(
@@ -161,17 +161,17 @@ const Main: React.FC<{
 
   return (
     <Stack
-      id={"main"}
-      position={"relative"}
-      boxSizing={"border-box"}
-      justifyContent={"center"}
+      id={'main'}
+      position={'relative'}
+      boxSizing={'border-box'}
+      justifyContent={'center'}
       spacing={1}
       minHeight={0.8}
       maxHeight={0.8}
       padding={3}
     >
       <Stack
-        position={"absolute"}
+        position={'absolute'}
         top={0}
         left={0}
         right={0}
@@ -179,11 +179,11 @@ const Main: React.FC<{
         spacing={1}
       >
         {call.text && (
-          <Stack padding={1} flexDirection={"row"} alignItems={"center"}>
+          <Stack padding={1} flexDirection={'row'} alignItems={'center'}>
             <img
-              height="20"
+              height='20'
               src={`https://flagcdn.com/${call.countryCode.toLowerCase()}.svg`}
-              alt={""}
+              alt={''}
             />
             <Typography fontSize={14} paddingLeft={1}>
               {call.text}
@@ -193,31 +193,31 @@ const Main: React.FC<{
 
         {response.text && (
           <Stack
-            justifyContent={"flex-end"}
-            alignItems={"center"}
-            flexDirection={"row"}
+            justifyContent={'flex-end'}
+            alignItems={'center'}
+            flexDirection={'row'}
             padding={1}
           >
-            <Typography fontSize={14} paddingRight={1} textAlign={"right"}>
+            <Typography fontSize={14} paddingRight={1} textAlign={'right'}>
               {response.text}
             </Typography>
             <img
-              height="20"
+              height='20'
               src={`https://flagcdn.com/${response.countryCode.toLowerCase()}.svg`}
-              alt={""}
+              alt={''}
             />
           </Stack>
         )}
       </Stack>
 
       <Box
-        display={"flex"}
-        flexDirection={"row"}
+        display={'flex'}
+        flexDirection={'row'}
         width={1}
-        justifyContent={"space-evenly"}
-        alignItems={"center"}
+        justifyContent={'space-evenly'}
+        alignItems={'center'}
       >
-        <Stack alignItems={"center"}>
+        <Stack alignItems={'center'}>
           <Typography fontSize={12}>
             {`
               ${languages[selectLeft.substring(0, 2)].endonym} •
@@ -227,14 +227,14 @@ const Main: React.FC<{
               }
             `}
           </Typography>
-          <IconButton onClick={() => handleOpenDialog("left")} disableRipple>
+          <IconButton onClick={() => handleOpenDialog('left')} disableRipple>
             <img
-              loading="lazy"
-              width="100"
+              loading='lazy'
+              width='100'
               src={`https://flagcdn.com/${selectLeft
                 .substring(3)
                 .toLowerCase()}.svg`}
-              alt={""}
+              alt={''}
             />
           </IconButton>
           <Typography fontSize={12}>
@@ -242,8 +242,8 @@ const Main: React.FC<{
           </Typography>
         </Stack>
         <LangDialog
-          name={"left"}
-          type={srcLeft ? "source" : "target"}
+          name={'left'}
+          type={srcLeft ? 'source' : 'target'}
           open={dialogOpen.left}
           voices={voices}
           handleClose={handleCloseDialog}
@@ -251,13 +251,13 @@ const Main: React.FC<{
 
         <IconButton onClick={handleSwapLangs}>
           {srcLeft ? (
-            <ArrowForwardIcon sx={{ fontSize: "2em" }} />
+            <ArrowForwardIcon sx={{ fontSize: '2em' }} />
           ) : (
-            <ArrowBackIcon sx={{ fontSize: "2em" }} />
+            <ArrowBackIcon sx={{ fontSize: '2em' }} />
           )}
         </IconButton>
 
-        <Stack alignItems={"center"}>
+        <Stack alignItems={'center'}>
           <Typography fontSize={12}>
             {`
               ${languages[selectRight.substring(0, 2)].endonym} •
@@ -267,14 +267,14 @@ const Main: React.FC<{
               }
             `}
           </Typography>
-          <IconButton onClick={() => handleOpenDialog("right")} disableRipple>
+          <IconButton onClick={() => handleOpenDialog('right')} disableRipple>
             <img
-              loading="lazy"
-              width="100"
+              loading='lazy'
+              width='100'
               src={`https://flagcdn.com/${selectRight
                 .substring(3)
                 .toLowerCase()}.svg`}
-              alt={""}
+              alt={''}
             />
           </IconButton>
           <Typography fontSize={12}>
@@ -283,8 +283,8 @@ const Main: React.FC<{
         </Stack>
 
         <LangDialog
-          name="right"
-          type={srcLeft ? "target" : "source"}
+          name='right'
+          type={srcLeft ? 'target' : 'source'}
           open={dialogOpen.right}
           voices={voices}
           handleClose={handleCloseDialog}
@@ -292,24 +292,24 @@ const Main: React.FC<{
       </Box>
 
       <Box
-        position={"absolute"}
+        position={'absolute'}
         bottom={50}
         left={0}
         right={0}
-        display={"flex"}
-        justifyContent={"center"}
+        display={'flex'}
+        justifyContent={'center'}
       >
         <IconButton
           onClick={handleListen}
-          disabled={status !== "Ready!"}
-          aria-label="microphone"
+          disabled={status !== 'Ready!'}
+          aria-label='microphone'
         >
-          <MicNoneIcon sx={{ fontSize: "5em" }} />
+          <MicNoneIcon sx={{ fontSize: '5em' }} />
         </IconButton>
       </Box>
       <Typography
-        textAlign={"center"}
-        position={"absolute"}
+        textAlign={'center'}
+        position={'absolute'}
         bottom={20}
         left={0}
         right={0}
