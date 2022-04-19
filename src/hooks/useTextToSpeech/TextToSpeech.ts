@@ -1,7 +1,7 @@
-import { SpeechSynthesisVoiceMap, TextToSpeechVoiceArray } from "./types";
+import { SpeechSynthesisVoiceMap, TextToSpeechVoiceArray } from './types';
 
-import countries from "../maps/countries.json";
-import languages from "../maps/languages.json";
+import countries from '../../utils/maps/countries.json';
+import languages from '../../utils/maps/languages.json';
 
 export default class TextToSpeech {
   private static _instance: TextToSpeech;
@@ -16,7 +16,7 @@ export default class TextToSpeech {
       this.voiceMap = this.interface
         .getVoices()
         .reduce<SpeechSynthesisVoiceMap>((map, voice) => {
-          const [langCode, countryCode] = voice.lang.split("-");
+          const [langCode, countryCode] = voice.lang.split('-');
 
           if (map[langCode]) {
             const country = map[langCode].countries.find(
@@ -50,7 +50,7 @@ export default class TextToSpeech {
   }
 
   static isSupported(): boolean {
-    return "speechSynthesis" in window || "webkitSpeechSynthesis" in window;
+    return 'speechSynthesis' in window || 'webkitSpeechSynthesis' in window;
   }
 
   static getInstance(): TextToSpeech {
