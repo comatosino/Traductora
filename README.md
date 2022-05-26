@@ -10,7 +10,7 @@ Written in Typescript and powered by React, React-Redux, and MUI on the frontend
 
 Create a user profile to start. Select a source language to speak and a target language to translate. Click the mic to start speaking. On a successful result, the translation will be displayed and saved to the user's history.
 
-Makes use of a couple custom React hooks to interface with the browser Web Speech API Speech-to-Text (SpeechRecognition) and Text-to-Speech (SpeechSynthesis) interfaces.
+Makes use of a couple custom React hooks to communicate with the browser Web Speech API Speech-to-Text (SpeechRecognition) and Text-to-Speech (SpeechSynthesis) interfaces.
 
 ---
 [![demo](./assets/traductora-demo.gif)](https://traductora.herokuapp.com/)
